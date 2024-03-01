@@ -3,18 +3,17 @@ FROM node:16 as builder
 WORKDIR /web
 COPY ./VERSION .
 COPY ./web .
-
-WORKDIR /web/default
 RUN npm config set registry https://registry.npmmirror.com --global
-RUN npm install
+RUN npm install -g pnpm
+WORKDIR /web/default
+RUN pnpm install
 RUN DISABLE_ESLINT_PLUGIN='true' REACT_APP_VERSION=$(cat VERSION) npm run build
 
 WORKDIR /web/berry
-RUN npm config set registry https://registry.npmmirror.com --global
-RUN npm install
+RUN pnpm install
 RUN DISABLE_ESLINT_PLUGIN='true' REACT_APP_VERSION=$(cat VERSION) npm run build
 
-FROM golang AS builder2
+FROM golang:1.19 AS builder2
 
 ENV GO111MODULE=on \
     CGO_ENABLED=1 \
@@ -39,3 +38,4 @@ COPY --from=builder2 /build/one-api /
 EXPOSE 6000
 WORKDIR /data
 ENTRYPOINT ["/one-api"]
+#docker buildx build --platform=linux/arm64 . -t oneapi
