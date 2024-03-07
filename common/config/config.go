@@ -1,17 +1,18 @@
 package config
 
 import (
-	"github.com/songquanpeng/one-api/common/helper"
 	"os"
 	"strconv"
 	"sync"
 	"time"
 
+	"github.com/songquanpeng/one-api/common/helper"
+
 	"github.com/google/uuid"
 )
 
 var SystemName = "One API"
-var ServerAddress = "http://localhost:3000"
+var ServerAddress = "http://localhost:6000"
 var Footer = ""
 var Logo = ""
 var TopUpLink = ""

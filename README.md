@@ -374,8 +374,8 @@ graph LR
 18. `THEME`：系统的主题设置，默认为 `default`，具体可选值参考[此处](./web/README.md)。
 
 ### 命令行参数
-1. `--port <port_number>`: 指定服务器监听的端口号，默认为 `3000`。
-   + 例子：`--port 3000`
+1. `--port <port_number>`: 指定服务器监听的端口号，默认为 `6000`。
+   + 例子：`--port 6000`
 2. `--log-dir <log_dir>`: 指定日志文件夹，如果没有设置，默认保存至工作目录的 `logs` 文件夹下。
    + 例子：`--log-dir ./logs`
 3. `--version`: 打印系统版本号并退出。
